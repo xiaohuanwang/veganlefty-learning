@@ -1,4 +1,4 @@
-package com.veganlefty.designpattern.create.factorymethod.ordinary;
+package com.veganlefty.designpattern.create.factorymethod;
 
 import com.alibaba.fastjson.JSON;
 import com.veganlefty.designpattern.create.factorymethod.basics.card.IQiYiCardService;
