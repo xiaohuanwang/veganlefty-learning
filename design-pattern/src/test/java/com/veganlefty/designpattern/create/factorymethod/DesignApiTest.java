@@ -1,7 +1,7 @@
 package com.veganlefty.designpattern.create.factorymethod;
 
-import org.itstack.demo.design.StoreFactory;
-import org.itstack.demo.design.store.ICommodity;
+import com.veganlefty.designpattern.create.factorymethod.design.StoreFactory;
+import com.veganlefty.designpattern.create.factorymethod.design.store.ICommodity;
 import org.junit.Test;
 
 import java.util.HashMap;
