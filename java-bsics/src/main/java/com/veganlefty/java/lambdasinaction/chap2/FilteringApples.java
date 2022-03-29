@@ -1,11 +1,9 @@
 package com.veganlefty.java.lambdasinaction.chap2;
 
-import com.veganlefty.java.lambdasinaction.chap1.FileApples;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * description
@@ -34,8 +32,8 @@ public class FilteringApples {
         List<Apple> heavyApples = filterApples(apples, new AppleWeightPredicate());
         System.out.println(heavyApples);
 
-
     }
+
 
     public static List<Apple> filterApplesByWeight(List<Apple> apples, int weight) {
         List<Apple> result = new ArrayList<>();
