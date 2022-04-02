@@ -2,6 +2,7 @@ package com.veganlefty.java.lambdasinaction.chap5;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -55,5 +56,66 @@ public class PuttingIntoPractice {
                 .map(transaction -> transaction.getTrader().getCity())
                 .collect(Collectors.toSet());
         System.out.println(cities1);
+
+        //(3) 查找所有来自于剑桥的交易员，并按姓名排序。
+        List<Trader> traders = transactions.stream()
+                .map(Transaction::getTrader)
+                .filter(trader -> trader.getCity().equals("Cambridge"))
+                .distinct()
+                .sorted(comparing(Trader::getName))
+                .collect(Collectors.toList());
+        System.out.println(traders.toString());
+
+        //(4) 返回所有交易员的姓名字符串，按字母顺序排序。
+        String traderStr = transactions.stream()
+                .map(transaction -> transaction.getTrader().getName())
+                .distinct()
+                .sorted()
+                .reduce("", (n1, n2) -> n1 + n2);
+        System.out.println(traderStr);
+        //优化
+        String traderStr1 =
+                transactions.stream()
+                        .map(transaction -> transaction.getTrader().getName())
+                        .distinct()
+                        .sorted()
+                        .collect(Collectors.joining());
+        System.out.println(traderStr1);
+
+        //(5) 有没有交易员是在米兰工作的?
+        boolean milanBased = transactions.stream()
+                .anyMatch(transaction -> transaction.getTrader().getCity().equals("Milan"));
+        System.out.println(milanBased);
+
+        //(6) 打印生活在剑桥的交易员的所有交易额。
+        transactions.stream()
+                .filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+                .map(Transaction::getValue)
+                .forEach(System.out::println);
+
+        //(7) 所有交易中，最高的交易额是多少?
+        Optional<Integer> highestValue =
+                transactions.stream()
+                        .map(Transaction::getValue)
+                        .reduce(Integer::max);
+        System.out.println(highestValue);
+
+        //(8) 找到交易额最小的交易。
+        Optional<Integer> minValue =
+                transactions.stream()
+                        .map(Transaction::getValue)
+                        .reduce(Integer::min);
+        System.out.println(minValue);
+
+        Optional<Transaction> minValue1 =
+                transactions.stream()
+                        .reduce((t1, t2) -> t1.getValue() < t2.getValue() ? t1 : t2);
+        System.out.println(minValue1);
+
+        Optional<Transaction> smallestTransaction =
+                transactions.stream()
+                        .min(comparing(Transaction::getValue));
+        System.out.println(smallestTransaction);
+
     }
 }

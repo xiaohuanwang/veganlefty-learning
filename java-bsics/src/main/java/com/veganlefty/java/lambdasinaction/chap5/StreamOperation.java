@@ -5,7 +5,10 @@ import com.veganlefty.java.lambdasinaction.chap4.Dish;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * description
@@ -119,5 +122,54 @@ public class StreamOperation {
         Optional<Integer> min = number.stream().reduce(Integer::min);
         System.out.println(min);
 
+        //计算最大值
+        //这段代码的问题是，它有一个暗含的装箱成本。
+        // 每个Integer都必须拆箱成一个原始类型，再进行求和。
+        int calories = Dish.menu.stream()
+                .map(Dish::getCalories)
+                .reduce(0, Integer::sum);
+        System.out.println(calories);
+        //error
+        /*int calories1 = Dish.menu.stream()
+                .map(Dish::getCalories)
+                .sum();*/
+        //优化
+        int calories1 = Dish.menu.stream()
+                .mapToInt(Dish::getCalories)
+                .sum();
+        System.out.println(calories1);
+
+        //默认值OptionalInt
+        OptionalInt maxCalories = Dish.menu.stream()
+                .mapToInt(Dish::getCalories)
+                .max();
+        System.out.println(maxCalories.orElse(1));
+
+        //数值范围
+        IntStream evenNumbers = IntStream.rangeClosed(1, 100)
+                .filter(n -> n % 2 == 0);
+        System.out.println(evenNumbers.count());
+
+        //数值流应用:勾股数
+        Stream<int[]> pythagoreanTriples = IntStream.rangeClosed(1, 100).boxed()
+                .flatMap(a ->
+                        IntStream.rangeClosed(a, 100)
+                                .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0)
+                                .mapToObj(b ->
+                                        new int[]{a, b, (int) Math.sqrt(a * a + b * b)})
+                );
+        pythagoreanTriples.limit(5).forEach(t ->
+                System.out.println(t[0] + ", " + t[1] + ", " + t[2]));
+
+        //目前的解决办法并不是最优的，因为你要求两次平方根。
+        // 让代码更为紧凑的一种可能的方法是，先生成所有的三元数(a*a, b*b, a*a+b*b)，
+        // 然后再筛选符合条件的
+        Stream<double[]> pythagoreanTriples1 = IntStream.rangeClosed(1, 100).boxed()
+                .flatMap(a ->
+                        IntStream.rangeClosed(a, 100)
+                                .mapToObj(b -> new double[]{a, b, Math.sqrt(a * a + b * b)})
+                                .filter(t -> t[2] % 1 == 0));
+        pythagoreanTriples1.limit(5).forEach(t ->
+                System.out.println(t[0] + ", " + t[1] + ", " + t[2]));
     }
 }
