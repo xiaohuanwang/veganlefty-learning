@@ -49,4 +49,7 @@ public class Dish {
     }
 
     public enum Type {MEAT, FISH, OTHER}
+
+    public enum CaloricLevel {DIET, NORMAL, FAT}
+
 }

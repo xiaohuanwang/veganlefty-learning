@@ -1,6 +1,8 @@
 package com.veganlefty.java.lambdasinaction.chap6;
 
 
+import com.veganlefty.java.lambdasinaction.chap4.Dish;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,6 +30,92 @@ public class GroupingTransactions {
     public static void main(String[] args) {
         groupImperatively();
         groupFunctionally();
+
+        Comparator<Dish> dishComparator = Comparator.comparingInt(Dish::getCalories);
+        Optional<Dish> mostComparator = Dish.menu.stream()
+                .collect(Collectors.maxBy(dishComparator));
+        System.out.println(mostComparator);
+
+        int totalCalories = Dish.menu.stream().collect(Collectors.summingInt(Dish::getCalories));
+        System.out.println(totalCalories);
+
+        double avgCalories = Dish.menu.stream()
+                .collect(Collectors.averagingInt(Dish::getCalories));
+        System.out.println(avgCalories);
+
+        IntSummaryStatistics menuStatistics = Dish.menu.stream()
+                .collect(Collectors.summarizingInt(Dish::getCalories));
+        System.out.println(menuStatistics);
+
+        String shortMenu = Dish.menu.stream()
+                .map(Dish::getName)
+                .collect(Collectors.joining(","));
+        System.out.println(shortMenu);
+
+        int totalCaloriesSum = Dish.menu.stream()
+                .collect(Collectors.reducing(0, Dish::getCalories, Integer::sum));
+        System.out.println(totalCaloriesSum);
+        int totalCaloriesMap = Dish.menu.stream()
+                .map(Dish::getCalories)
+                .reduce(Integer::sum).get();
+        System.out.println(totalCaloriesMap);
+        int totalCaloriesSum1 = Dish.menu.stream()
+                .mapToInt(Dish::getCalories).sum();
+        System.out.println(totalCaloriesSum1);
+
+        Map<Dish.Type, List<Dish>> deshesByType = Dish.menu.stream()
+                .collect(Collectors.groupingBy(Dish::getType));
+        System.out.println(deshesByType);
+
+        Map<Dish.CaloricLevel, List<Dish>> disHeaByCaroricLevel = Dish.menu.stream()
+                .collect(Collectors.groupingBy(dish -> {
+                    if (dish.getCalories() <= 400) {
+                        return Dish.CaloricLevel.DIET;
+                    } else if (dish.getCalories() <= 700) {
+                        return Dish.CaloricLevel.NORMAL;
+                    } else {
+                        return Dish.CaloricLevel.FAT;
+                    }
+                }));
+        System.out.println(disHeaByCaroricLevel);
+
+        Map<Dish.Type, Map<Dish.CaloricLevel, List<Dish>>> dishesByTypeCaloricLevel = Dish.menu.stream()
+                .collect(Collectors.groupingBy(Dish::getType,
+                        Collectors.groupingBy(dish -> {
+                                    if (dish.getCalories() <= 400) {
+                                        return Dish.CaloricLevel.DIET;
+                                    } else if (dish.getCalories() <= 700) {
+                                        return Dish.CaloricLevel.NORMAL;
+                                    } else {
+                                        return Dish.CaloricLevel.FAT;
+                                    }
+                                }
+                        ))
+                );
+        System.out.println(dishesByTypeCaloricLevel);
+
+        Map<Dish.Type, Long> typesCount = Dish.menu.stream()
+                .collect(Collectors.groupingBy(Dish::getType, Collectors.counting()));
+        System.out.println(typesCount);
+
+        Map<Dish.Type, Optional<Dish>> mostCaloricByType = Dish.menu.stream()
+                .collect(Collectors.groupingBy
+                        (Dish::getType, Collectors.maxBy(Comparator.comparingInt(Dish::getCalories))));
+        System.out.println(mostCaloricByType);
+
+        Map<Dish.Type, Set<Dish.CaloricLevel>> caloricLevelByType = Dish.menu.stream()
+                .collect(Collectors.groupingBy(Dish::getType, Collectors.mapping(
+                        dish -> {
+                            if (dish.getCalories() <= 400) {
+                                return Dish.CaloricLevel.DIET;
+                            } else if (dish.getCalories() <= 700) {
+                                return Dish.CaloricLevel.NORMAL;
+                            } else {
+                                return Dish.CaloricLevel.FAT;
+                            }
+                        }, Collectors.toSet()
+                )));
+        System.out.println(caloricLevelByType);
     }
 
     private static void groupImperatively() {
