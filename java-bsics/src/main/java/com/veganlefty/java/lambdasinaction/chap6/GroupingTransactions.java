@@ -6,6 +6,7 @@ import com.veganlefty.java.lambdasinaction.chap4.Dish;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
 /**
  * description
  *
@@ -116,6 +117,24 @@ public class GroupingTransactions {
                         }, Collectors.toSet()
                 )));
         System.out.println(caloricLevelByType);
+
+        Map<Boolean, List<Dish>> partitionedMenu = Dish.menu.stream()
+                .collect(Collectors.partitioningBy(Dish::isVegetarian));
+        System.out.println(partitionedMenu);
+
+        Map<Boolean, Map<Dish.Type, List<Dish>>> vegetarianDishesByType = Dish.menu.stream()
+                .collect(Collectors.partitioningBy(Dish::isVegetarian, Collectors.groupingBy(Dish::getType)));
+        System.out.println(vegetarianDishesByType);
+
+        Map<Boolean, Dish> mostCaloricPartitionedByVegetarian = Dish.menu.stream()
+                .collect(Collectors.partitioningBy(Dish::isVegetarian,
+                        Collectors.collectingAndThen(
+                                Collectors.maxBy(
+                                        Comparator.comparingInt(Dish::getCalories)
+                                ), Optional::get)
+                        )
+                );
+        System.out.println(mostCaloricPartitionedByVegetarian);
     }
 
     private static void groupImperatively() {
