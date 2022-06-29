@@ -9,7 +9,14 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ *     发布者：发布事件，通过ApplicationEventPublisher发布事件。
+ *     发布者负责发布消息，Spring容器中默认的ApplicationEventPublisher是AbstractApplicationContext，
+ *     同时AbstractApplicationContext也是ApplicationContext的一个子类，
+ *     也就是说，Spring默认使用AbstractApplicationContext发布事件。
+ *     有三种实现方式:
+ *     1：直接使用ApplicationEventPublisher(推荐)
+ *     2：实现ApplicationEventPublisherAware接口(推荐)
+ *     3：使用ApplicationContext#publishEvent(ApplicationEvent)发布
  *
  * @author wxh_work@163.com
  * @date 2022/6/28 16:02
@@ -18,16 +25,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class OrderService {
-    /*
-    发布者：发布事件，通过ApplicationEventPublisher发布事件。
-    发布者负责发布消息，Spring容器中默认的ApplicationEventPublisher是AbstractApplicationContext，
-    同时AbstractApplicationContext也是ApplicationContext的一个子类，
-    也就是说，Spring默认使用AbstractApplicationContext发布事件。
-    有三种实现方式:
-    1：直接使用ApplicationEventPublisher(推荐)
-    2：实现ApplicationEventPublisherAware接口(推荐)
-    3：使用ApplicationContext#publishEvent(ApplicationEvent)发布
-    */
     @Autowired
     private ApplicationEventPublisher publisher;
 
