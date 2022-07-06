@@ -5,24 +5,59 @@
 
   <groupId>com.veganlefty</groupId>
   <artifactId>spring-boot</artifactId>
-  <name>${project.artifactId}</name>
-  <version>1.0</version>
+  <name>spring-boot</name>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
-    <spring-boot.version>2.6.6</spring-boot.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <java.version>1.8</java.version>
+    <spring-boot.version>2.6.6</spring-boot.version>
+    <hutool.version>5.8.4</hutool.version>
   </properties>
-
-  <!-- 以下依赖 全局所有的模块都会引入  -->
-  <dependencies>
-  </dependencies>
 
   <modules>
     <module>spring-boot-event</module>
+    <module>spring-boot-statemachine</module>
   </modules>
+
+  <!-- parent指明继承关系，给出被继承的父项目的具体信息-->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.6.6</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <!-- 以下依赖 全局所有的模块都会引入  -->
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- hutool 工具包  -->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>${hutool.version}</version>
+    </dependency>
+    <!-- lombok 工具包  -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+
 
   <build>
     <plugins>
