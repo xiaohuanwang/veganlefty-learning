@@ -44,6 +44,12 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- junit 工具包  -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
     <!-- hutool 工具包  -->
     <dependency>
       <groupId>cn.hutool</groupId>
