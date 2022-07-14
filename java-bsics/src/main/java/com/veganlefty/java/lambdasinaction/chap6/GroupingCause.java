@@ -1,24 +1,27 @@
-package com.veganlefty.java;
+package com.veganlefty.java.lambdasinaction.chap6;
 
-import java.io.File;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+
 /**
- * @Description:
- * @date: 2021/10/27 11:08 下午
- * @author: 王小欢
+ * description
+ *
+ * @author wxh_work@163.com
+ * @date 2022/4/2 5:52 下午
  */
-public class Test {
+public class GroupingCause {
+
     public static void main(String[] args) {
-        LocalDate startDate = LocalDate.of(2022, 5, 1);
-        LocalDate endDate = LocalDate.of(2022, 7, 1);
-        List<LocalDate> thatDayList = Test.listLocalDateOfTimePageReqByDayDesc(startDate, endDate);
-        System.out.println(thatDayList.toString());
+        LocalDate startDate = LocalDate.of(2022, 7, 10);
+        LocalDate endDate = LocalDate.of(2022, 7, 15);
+        List<LocalDate> thatDayList = GroupingCause.listLocalDateOfTimePageReqByDayDesc(startDate, endDate);
+        Map<String, Object> map = new HashMap<>();
+
     }
 
     public static List listLocalDateOfTimePageReqByDayDesc(LocalDate startDate, LocalDate endDate) {
