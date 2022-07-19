@@ -8,7 +8,11 @@ package com.veganlefty.constants;
  */
 public interface RabbitConsts {
     /**
-     * 直接模式
+     * 直接队列
      */
-    String DIRECT_QUEUE = "queueDirect";
+    String DIRECT_QUEUE= "directQueue";
+    /**
+     *工作队列
+     */
+    String WORK_QUEUE = "workQueue";
 }

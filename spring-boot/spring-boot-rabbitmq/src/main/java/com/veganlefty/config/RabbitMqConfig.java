@@ -34,4 +34,12 @@ public class RabbitMqConfig {
     public Queue directQueue() {
         return new Queue(RabbitConsts.DIRECT_QUEUE);
     }
+
+    /**
+     * 工作模式队列
+     */
+    @Bean
+    public Queue workQueue() {
+        return new Queue(RabbitConsts.WORK_QUEUE);
+    }
 }

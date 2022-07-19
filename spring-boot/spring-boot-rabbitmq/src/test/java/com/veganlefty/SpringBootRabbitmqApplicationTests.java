@@ -20,8 +20,18 @@ class SpringBootRabbitmqApplicationTests {
      * 测试直接模式发送
      */
     @Test
-    public void sendDirect() {
-        rabbitTemplate.convertAndSend(RabbitConsts.DIRECT_QUEUE, new Order(1,"订单1",1));
+    public void sendDirectQueue() {
+            rabbitTemplate.convertAndSend(RabbitConsts.DIRECT_QUEUE, new Order(1,"订单1",1));
+    }
+
+    /**
+     * 测试工作模式发送
+     */
+    @Test
+    public void sendWorkQueue() {
+        for (int i = 0; i < 5; i++) {
+            rabbitTemplate.convertAndSend(RabbitConsts.WORK_QUEUE, new Order(i,"订单"+i,1));
+        }
     }
 
 }
