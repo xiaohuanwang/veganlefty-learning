@@ -23,6 +23,7 @@
     <module>spring-boot-event</module>
     <module>spring-boot-statemachine</module>
     <module>spring-boot-rabbitmq</module>
+    <module>spring-boot-security</module>
   </modules>
 
   <!-- parent指明继承关系，给出被继承的父项目的具体信息-->
