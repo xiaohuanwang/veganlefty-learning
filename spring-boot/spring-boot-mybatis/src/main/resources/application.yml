@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    type:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://ip:3306/xxxxx?characterEncoding=utf-8&useSSL=false
+    username: xxxxx
+    password: xxxxxxx
+logging:
+  level:
+    com.xkcoding: debug
+    com.xkcoding.orm.mybatis.mapper: trace
+mybatis:
+  configuration:
+    # 下划线转驼峰
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.xkcoding.orm.mybatis.entity

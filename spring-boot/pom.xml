@@ -24,6 +24,7 @@
     <module>spring-boot-statemachine</module>
     <module>spring-boot-rabbitmq</module>
     <module>spring-boot-security</module>
+    <module>spring-boot-mybatis</module>
   </modules>
 
   <!-- parent指明继承关系，给出被继承的父项目的具体信息-->
@@ -36,6 +37,12 @@
 
   <!-- 以下依赖 全局所有的模块都会引入  -->
   <dependencies>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
