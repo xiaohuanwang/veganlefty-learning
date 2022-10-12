@@ -1,8 +1,6 @@
 package com.veganlefty.controller;
 
-import cn.easyes.core.conditions.LambdaEsQueryWrapper;
 import com.veganlefty.entity.User;
-import com.veganlefty.mapper.UserMapper;
 import com.veganlefty.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
