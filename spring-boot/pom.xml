@@ -25,6 +25,7 @@
     <module>spring-boot-rabbitmq</module>
     <module>spring-boot-security</module>
     <module>spring-boot-mybatis</module>
+    <module>spring-boot-elasticsearch</module>
   </modules>
 
   <!-- parent指明继承关系，给出被继承的父项目的具体信息-->

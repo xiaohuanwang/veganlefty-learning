@@ -1,0 +1,9 @@
+easy-es:
+  # 是否开启EE自动配置
+  enable: true
+  # ES连接地址+端口
+  address: es.caiduofu.net:9200
+  # 关闭自带banner
+  banner: false
+
+
