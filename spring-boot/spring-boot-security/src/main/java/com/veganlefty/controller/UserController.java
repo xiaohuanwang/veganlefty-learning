@@ -1,11 +1,8 @@
 package com.veganlefty.controller;
 
-import com.veganlefty.model.Order;
+import com.veganlefty.model.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.math.BigDecimal;
-
 /**
  * description
  *
@@ -16,11 +13,7 @@ import java.math.BigDecimal;
 public class UserController {
 
     @RequestMapping("/userInfo")
-    public Order userInfo(){
-        return Order.builder()
-                .orderId(1L)
-                .orderName("订单")
-                .orderPrice(new BigDecimal(12.23))
-                .build();
+    public User userInfo(){
+        return null;
     }
 }

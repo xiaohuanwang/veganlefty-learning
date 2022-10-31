@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.223:3306/cdf_user?characterEncoding=utf-8&useSSL=false
+    username: cdf_user
+    password: dhds%@#90MpL
+logging:
+  level:
+    com.xkcoding: debug
+    com.xkcoding.orm.mybatis.mapper: trace
+
+

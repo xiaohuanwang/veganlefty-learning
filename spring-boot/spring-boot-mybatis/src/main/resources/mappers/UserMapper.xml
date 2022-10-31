@@ -3,8 +3,34 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.veganlefty.mapper.UserMapper">
+    <!--int insertUser()();-->
+    <insert id="insertUser">
+        insert into user values (null,#{username},#{age},#{email},#{sex},#{password})
+    </insert>
     <!--List<User> getAllUser();-->
-    <select id="getAllUser" resultType="com.veganlefty.entity.User">
+    <!--查询的标签select必须设置属性resultType或resultMap，用于设置实体类和数据库表的映射关系
+                resultType:自动映射，用于属性名和表中字段名一致的情况
+                resultMap:自定义映射，用于一对多或多对一或字段名和属性名不一致的情况 -->
+    <select id="getAllUser" resultType='com.veganlefty.entity.User'>
         select * from user
     </select>
+
+    <select id="getByIdUser" resultType="com.veganlefty.entity.User">
+        select * from user
+        <where>
+            <if test="id !=null">
+                id = #{id}
+            </if>
+            <if test="username != null">
+                and username like concat('%',#{username,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+
+    </select>
+
+    <select id="login" resultType="com.veganlefty.entity.User">
+        select * from user where username = #{username} and password = #{password}
+    </select>
+
+
 </mapper>

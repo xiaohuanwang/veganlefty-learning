@@ -1,5 +1,6 @@
 package com.veganlefty.mapper;
 
+import com.veganlefty.entity.City;
 import com.veganlefty.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 @Mapper
 @Component
-public interface UserMapper{
+public interface CityMapper {
 
     /**
      * MyBatis面向接口编程的两个一致：
@@ -24,22 +25,9 @@ public interface UserMapper{
      *
      * 表--实体类--mapper接口--映射文件
      */
-    /**
-     *用户登录
-     */
-    User login(String username,String password);
+    void save(City city);
 
-    /**
-     *新增用户
-     */
-    void insertUser(User user);
-    /**
-     * 查询所有的用户信息
-     */
-    List<User> getAllUser();
-    /**
-     * 根据用户ID查询用户信息
-     */
-    User getByIdUser(@Param("id") Integer id,@Param("username") String username);
+    List<City> getByPidCityList(Long pid);
+
 
 }

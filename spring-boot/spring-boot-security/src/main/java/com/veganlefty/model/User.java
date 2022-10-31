@@ -15,18 +15,18 @@ import java.math.BigDecimal;
  */
 @Data
 @Builder
-public class Order {
+public class User {
 
     /**
-     * 订单ID
+     * ID
      */
-    private long orderId;
+    private long id;
     /**
-     * 订单名称
+     * 名称
      */
-    private String orderName;
+    private String name;
     /**
-     * 订单金额
+     * 密码
      */
-    private BigDecimal orderPrice;
+    private String password;
 }

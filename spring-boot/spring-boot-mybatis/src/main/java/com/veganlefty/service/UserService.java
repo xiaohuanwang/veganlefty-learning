@@ -12,6 +12,10 @@ import java.util.List;
  */
 public interface UserService {
     /**
+     *用户登录
+     */
+    User login(String username,String password);
+    /**
      * 添加用户信息
      */
     int insertUser(User user);
@@ -20,4 +24,8 @@ public interface UserService {
      * 查询所有的用户信息
      */
     List<User> getAllUser();
+    /**
+     * 根据用户ID查询用户信息
+     */
+    User getByIdUser(Integer id,String username);
 }

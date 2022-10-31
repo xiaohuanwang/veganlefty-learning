@@ -1,5 +1,6 @@
 package com.veganlefty.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @date 2022/9/21 10:26
  */
 @Data
+@Builder
 public class User implements Serializable {
     /**
      *id
