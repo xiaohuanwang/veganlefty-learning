@@ -8,11 +8,18 @@ package com.veganlefty.java.enumexample;
  */
 public class EnumTest {
     public static void main(String[] args) {
-        Spiciness spiciness = Spiciness.MILD;
-        System.out.println(spiciness);
+        OrderStatusEnum orderStatus = OrderStatusEnum.UNPAID;
+        System.out.println(orderStatus);
 
-        for (Spiciness s : Spiciness.values()) {
-            System.out.println(s + ":" + s.ordinal());
+        for (OrderStatusEnum orderStatusEnum : OrderStatusEnum.values()) {
+            System.out.println(orderStatusEnum + ":" + orderStatusEnum.ordinal());
         }
+
+        OrderStatusEnum[] values = OrderStatusEnum.values();
+        Enum e = OrderStatusEnum.PAID;
+        for (Enum en : e.getClass().getEnumConstants()) {
+            System.out.println(en);
+        }
+
     }
 }
