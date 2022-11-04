@@ -20,6 +20,14 @@ public enum OrderStatusEnum {
      */
     PARTIAL_PAYMENT("部分支付"),
     /**
+     * 已发货
+     */
+    SHIPPED("已发货"),
+    /**
+     * 已完成
+     */
+    COMLETED("已完成"),
+    /**
      * 已取消
      */
     CANCEL("已取消");
