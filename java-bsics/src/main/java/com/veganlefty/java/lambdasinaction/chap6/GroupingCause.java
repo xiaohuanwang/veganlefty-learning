@@ -1,6 +1,9 @@
 package com.veganlefty.java.lambdasinaction.chap6;
 
 
+import com.veganlefty.java.lambdasinaction.chap4.CaseFailureCauseEnum;
+import com.veganlefty.java.lambdasinaction.chap4.Cause;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -22,6 +25,9 @@ public class GroupingCause {
         List<LocalDate> thatDayList = GroupingCause.listLocalDateOfTimePageReqByDayDesc(startDate, endDate);
         Map<String, Object> map = new HashMap<>();
 
+        Map<CaseFailureCauseEnum, Map<LocalDate, Long>> groupByType = Cause.menu.stream()
+                .collect(Collectors.groupingBy(Cause::getFailureCauseCategory, Collectors.groupingBy(Cause::getData, Collectors.counting())));
+        System.out.println(groupByType);
     }
 
     public static List listLocalDateOfTimePageReqByDayDesc(LocalDate startDate, LocalDate endDate) {
