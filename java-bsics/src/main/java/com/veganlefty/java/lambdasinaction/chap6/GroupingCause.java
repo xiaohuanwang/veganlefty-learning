@@ -25,6 +25,7 @@ public class GroupingCause {
         List<LocalDate> thatDayList = GroupingCause.listLocalDateOfTimePageReqByDayDesc(startDate, endDate);
         Map<String, Object> map = new HashMap<>();
 
+
         Map<CaseFailureCauseEnum, Map<LocalDate, Long>> groupByType = Cause.menu.stream()
                 .collect(Collectors.groupingBy(Cause::getFailureCauseCategory, Collectors.groupingBy(Cause::getData, Collectors.counting())));
         System.out.println(groupByType);
