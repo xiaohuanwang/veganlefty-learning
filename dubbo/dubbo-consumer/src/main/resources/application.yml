@@ -1,0 +1,38 @@
+server:
+  port: 6666
+spring:
+  application:
+    name: dubbo-consumer
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      server-addr: 192.168.31.206:8848
+      config:
+        group: JAVA
+        namespace: ""
+      discovery:
+        group: JAVA
+        namespace: ""
+dubbo:
+  application:
+    name: dubbo-consumer
+  scan:
+    base-packages: com.veganlefty
+  protocols:
+    dubbo:
+      name: dubbo
+      host: ${spring.cloud.client.ip-address}
+      port: -1
+      serialization: kryo
+  registry:
+    id: zk-registry
+    address: zookeeper://192.168.31.206:2181
+  config-center:
+    address: zookeeper://192.168.31.206:2181
+  metadata-report:
+    address: zookeeper://192.168.31.206:2181
+
+
+
+
