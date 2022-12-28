@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService {
         List<User> userList = userMapper.selectList(userQueryWrapper);
         return userList;
     }
+
+    @Override
+    public void saveUser(User user) {
+        userMapper.insert(user);
+    }
 }

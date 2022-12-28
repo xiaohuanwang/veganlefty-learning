@@ -13,4 +13,6 @@ import java.util.List;
 public interface UserService {
 
     List<User> userList(String customerName);
+
+    void saveUser(User user);
 }
