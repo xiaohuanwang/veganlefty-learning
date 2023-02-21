@@ -28,6 +28,8 @@
     <module>spring-boot-elasticsearch</module>
     <module>spring-boot-exception</module>
     <module>spring-boot-gateway</module>
+    <module>spring-boot-repeat</module>
+      <module>spring-boot-common</module>
   </modules>
 
   <!-- parent指明继承关系，给出被继承的父项目的具体信息-->
